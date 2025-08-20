@@ -3,133 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESPhome冷氣/除濕機模組使用說明</title>
+    <title>Simon IoT</title>
     <!-- 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Font Awesome 圖示庫 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- 引入 Google Fonts 的 Inter 字體 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://css.gg/css?=&name=link" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* 自定義字體 */
+        /* 自訂樣式，使用從 Logo 提取的顏色 */
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: #e0e8f0; /* 從 Logo 背景提取的淺藍灰色 */
+        }
+        .text-main {
+            color: #0d4f8d; /* 從 Logo 深藍色部分提取 */
+        }
+        .bg-accent {
+            background-color: #1e88e5; /* 從 Logo 較亮的藍色部分提取 */
+        }
+        .hover\:bg-accent-dark:hover {
+            background-color: #1565c0; /* 滑鼠懸停時的深藍色 */
+        }
+        /* 確保 Font Awesome 圖示垂直置中 */
+        .icon-container {
+            width: 2.5rem; /* 40px */
+            height: 2.5rem; /* 40px */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 1rem;
         }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="flex items-center justify-center min-h-screen p-4">
 
-    <div class="container mx-auto max-w-3xl p-4 sm:p-6 md:p-8">
-        
-        <!-- 主要標題 -->
-        <header class="text-center mb-8">
-            <h1 class="text-3xl sm:text-4xl font-bold text-gray-900">ESPhome冷氣/除濕機模組</h1>
-            <h2 class="text-2xl text-gray-600 mt-2">使用說明</h2>
-        </header>
+    <div class="text-center p-6 md:p-12 max-w-2xl mx-auto w-full">
 
-        <main class="bg-white rounded-2xl shadow-lg p-6 sm:p-8 space-y-8">
+        <!-- Logo -->
+        <img src="img/logo.jpg" alt="Simon IoT Logo" class="w-48 h-48 md:w-56 md:h-56 mx-auto rounded-full shadow-lg mb-6">
 
-            <!-- 重要警告訊息 -->
-            <div class="space-y-4">
-                <div class="bg-red-100 border-l-4 border-red-500 text-red-800 p-4 rounded-r-lg" role="alert">
-                    <p class="font-bold">上機前務必確認插對地方！</p>
-                    <p>如因插錯腳座造成模組或電器損壞恕不負責。</p>
+        <!-- 網站名稱與標題 -->
+        <h1 class="text-4xl md:text-5xl font-bold text-main">
+            Simon IoT
+        </h1>
+
+        <!-- 描述文字 (更新後的列表樣式) -->
+        <div class="mt-6 mb-8">
+            <div class="inline-block space-y-3 text-lg md:text-xl text-main text-left">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-network-wired w-6 text-center mr-3"></i>
+                    <span>研究智慧家庭</span>
                 </div>
-                <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 rounded-r-lg" role="alert">
-                    <p class="font-bold">請先透過 USB 測試連線！</p>
-                    <p>請先插上 USB 電源，確認模組可成功連上家中網路及 Home Assistant 後，再安裝到電器上。</p>
+                <div class="flex items-center">
+                    <i class="fa-solid fa-house-signal w-6 text-center mr-3"></i>
+                    <span>Home Assistant</span>
                 </div>
-            </div>
-            
-            <!-- 安裝位置參考 -->
-            <div>
-                <h2 class="text-2xl font-bold text-gray-900 mb-4 border-b pb-3">安裝位置</h2>
-                <a href="where.html" class="text-blue-600 hover:underline text-lg">點此查看模組安裝位置照片</a>
-            </div>
-
-            <!-- 設定步驟 -->
-            <div>
-                <h2 class="text-2xl font-bold text-gray-900 mb-6 border-b pb-3">設定步驟</h2>
-                <ol class="list-decimal list-inside space-y-6 text-lg text-gray-700">
-                    <!-- 步驟 1 -->
-                    <li>
-                        <span class="font-semibold">開啟 Wi-Fi 熱點：</span>
-                        <p class="ml-6 mt-1 text-gray-600">從模組的 USB-C 孔上電後，等待約 30 秒，模組會自動建立一個 Wi-Fi 熱點。</p>
-                    </li>
-                    
-                    <!-- 步驟 2 -->
-                    <li>
-                        <span class="font-semibold">辨識您的設備：</span>
-                        <p class="ml-6 mt-1 text-gray-600">根據您的電器品牌，選擇對應的 Wi-Fi 熱點名稱：</p>
-                        <ul class="list-disc list-inside ml-10 mt-2 space-y-1 text-gray-600">
-                            <li>國際牌冷氣: <code class="bg-gray-200 text-gray-800 px-2 py-1 rounded-md font-mono">climate-p</code></li>
-                            <li>日立冷氣: <code class="bg-gray-200 text-gray-800 px-2 py-1 rounded-md font-mono">climate-h</code></li>
-                            <li><span class="font-bold text-blue-700">三菱電機</span>冷氣: <code class="bg-gray-200 text-gray-800 px-2 py-1 rounded-md font-mono">climate-mt</code></li>
-                            <li>日立除濕機: <code class="bg-gray-200 text-gray-800 px-2 py-1 rounded-md font-mono">dehumidifier</code></li>
-                            <li><span class="font-bold text-purple-700">三菱重工</span>壁掛: <code class="bg-gray-200 text-gray-800 px-2 py-1 rounded-md font-mono">climate-mhi</code></li>
-                            <li><span class="font-bold text-purple-700">三菱重工</span>吊隱: <code class="bg-gray-200 text-gray-800 px-2 py-1 rounded-md font-mono">climate-mhi-ceiling</code></li>
-                            <li>國際舊款冷氣: <code class="bg-gray-200 text-gray-800 px-2 py-1 rounded-md font-mono">climate-p-v2</code></li>
-                            <li>日立舊款冷氣: <code class="bg-gray-200 text-gray-800 px-2 py-1 rounded-md font-mono">climate-h-v2</code></li>
-                        </ul>
-                    </li>
-
-                    <!-- 步驟 3 -->
-                    <li>
-                        <span class="font-semibold">連線至熱點：</span>
-                        <p class="ml-6 mt-1 text-gray-600">熱點連線密碼為 <code class="bg-gray-200 text-gray-800 px-2 py-1 rounded-md font-mono">12345678</code>。連上後，在瀏覽器輸入網址 <a href="http://192.168.4.1" target="_blank" class="text-blue-600 hover:underline">192.168.4.1</a> 進入設定頁面。</p>
-                    </li>
-                    
-                    <!-- 步驟 4 -->
-                    <li>
-                        <span class="font-semibold">設定 Wi-Fi 連線：</span>
-                        <p class="ml-6 mt-1 text-gray-600">在設定頁面中，選擇您家中的 2.4GHz Wi-Fi 名稱，並輸入密碼，然後按下 <span class="font-bold">SAVE</span>。</p>
-                    </li>
-
-                    <!-- 步驟 5 -->
-                    <li>
-                        <span class="font-semibold">確認設備上線：</span>
-                        <p class="ml-6 mt-1 text-gray-600">模組重啟後會自動連上您家中的 Wi-Fi。您可以在路由器的管理頁面看到新設備，其名稱後面會附加 MAC 位址以供辨識。</p>
-                    </li>
-
-                    <!-- 步驟 6 -->
-                    <li>
-                        <span class="font-semibold">整合至 Home Assistant：</span>
-                        <p class="ml-6 mt-1 text-gray-600">Home Assistant (HA) 通常會自動提示發現新設備，點擊加入即可。若無自動提示，請至 HA 的「設定」>「裝置與服務」>「新增整合」，搜尋並選擇 <span class="font-bold">ESPhome</span>，然後輸入模組的 IP 位址手動加入。</p>
-                    </li>
-                    
-                    <!-- 步驟 7 -->
-                    <li>
-                        <span class="font-semibold">關於舊款機型：</span>
-                        <p class="ml-6 mt-1 text-gray-600">日立、國際的舊款冷氣可能僅支援模式切換及溫度調節，若其他功能（如風速、風向）無法使用，此為正常現象。</p>
-                    </li>
-                </ol>
-            </div>
-
-            <!-- GitHub 資源 -->
-            <div class="border-t pt-6">
-                <h3 class="text-xl font-semibold text-gray-800">開發者資源</h3>
-                <p class="text-gray-600 mt-2">如有想要自行研究硬體或修改YAML，相關資料都分享在 GitHub 上：</p>
-                <div class="mt-4 space-y-3">
-                    <p>國際、日立冷氣: <a href="https://github.com/xangin/TaiSEIA_ESPhome_samples/" target="_blank" class="text-blue-600 hover:underline">GitHub Repo</a></p>
-                    <p>三菱重工: <a href="https://github.com/xangin/mhi-ac-ctrl-esp32-c3" target="_blank" class="text-blue-600 hover:underline">GitHub Repo</a></p>
-                    <p>三菱電機: <a href="https://github.com/xangin/MitsubishiCN105ESPHome" target="_blank" class="text-blue-600 hover:underline">GitHub Repo</a></p>
+                <div class="flex items-center">
+                    <i class="fa-solid fa-microchip w-6 text-center mr-3"></i>
+                    <span>自製ESPHome硬體</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fa-solid fa-chalkboard-user w-6 text-center mr-3"></i>
+                    <span>分享教學文章</span>
                 </div>
             </div>
-            
-            <!-- 聯絡方式 -->
-            <div class="text-center border-t pt-6">
-                <h3 class="text-xl font-semibold text-gray-800">需要協助嗎？</h3>
-                <p class="text-gray-600 mt-2">使用上如有任何疑問，請點下方加入官方 Line@ 帳號詢問。</p>
-                <a href="https://line.me/R/ti/p/@066hhxou" target="_blank" class="mt-4 text-2xl font-bold text-green-600 bg-gray-100 hover:bg-gray-200 transition-colors py-2 px-4 rounded-lg inline-block">@066hhxou</a>
-            </div>
+        </div>
 
-        </main>
+        <!-- 按鈕連結 -->
+        <div class="space-y-4 max-w-sm mx-auto">
+            <!-- 連結 A: 開箱與教學 -->
+            <a href="https://xangin.notion.site/HA-17da78b89192495a8d73a88994394a5d" target="_blank" rel="noopener noreferrer" class="flex items-center bg-accent text-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+                <div class="icon-container">
+                    <i class="fa-brands fa-notion fa-2x"></i>
+                </div>
+                <div class="text-left">
+                    <div class="font-bold">開箱與教學</div>
+                    <div class="text-sm opacity-90">智慧家庭相關文章</div>
+                </div>
+            </a>
+
+            <!-- 連結 B: 商品購買處 -->
+            <a href="https://famistore.famiport.com.tw/famistore/users/239261/malls/6889dc84e27f3000da04fe7c" target="_blank" rel="noopener noreferrer" class="flex items-center bg-accent text-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+                <div class="icon-container">
+                    <i class="fa-solid fa-cart-shopping fa-2x"></i>
+                </div>
+                <div class="text-left">
+                    <div class="font-bold">商品購買處</div>
+                    <div class="text-sm opacity-90">ESPhome冷氣模組，支援多家廠牌</div>
+                </div>
+            </a>
+
+            <!-- 連結 C: 模組說明書 -->
+            <a href="https://ac.siot.cc/ac" target="_blank" rel="noopener noreferrer" class="flex items-center bg-accent text-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+                <div class="icon-container">
+                    <i class="fa-solid fa-circle-question fa-2x"></i>
+                </div>
+                <div class="text-left">
+                    <div class="font-bold">模組說明書</div>
+                    <div class="text-sm opacity-90">模組接哪裡?怎麼連WiFi?</div>
+                </div>
+            </a>
+
+            <!-- 連結 D: Line@ -->
+            <a href="https://line.me/R/ti/p/@066hhxou" target="_blank" rel="noopener noreferrer" class="flex items-center bg-accent text-white p-4 rounded-lg shadow-md transition-transform transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+                <div class="icon-container">
+                    <i class="fa-brands fa-line fa-2x"></i>
+                </div>
+                <div class="text-left">
+                    <div class="font-bold">Line@</div>
+                    <div class="text-sm opacity-90">商品諮詢，疑難解答</div>
+                </div>
+            </a>
+        </div>
+
+        <!-- 分隔線 -->
+        <hr class="my-12 border-gray-300">
 
         <!-- 頁腳 -->
-        <footer class="text-center mt-8 text-gray-500 text-sm">
-            <p>&copy; 2024 <a href="https://siot.cc" target="_blank" class="hover:underline text-gray-600">Simon IoT</a>. All Rights Reserved.</p>
+        <footer class="text-center text-slate-600 space-y-2">
+            <p>&copy; 2025 <a href="https://siot.cc" class="hover:underline text-sky-700">Simon IoT</a>. All Rights Reserved.</p>
         </footer>
+
     </div>
 
 </body>
