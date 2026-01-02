@@ -89,111 +89,131 @@
 
 <body class="flex items-center justify-center min-h-screen p-4">
 
-    <div class="text-center p-6 md:p-12 max-w-2xl mx-auto w-full">
+    <div
+        class="text-center md:text-left p-6 md:p-12 max-w-2xl md:max-w-6xl mx-auto w-full md:flex md:items-start md:justify-center md:gap-16">
 
-        <!-- Logo -->
-        <img src="img/logo.jpg" alt="Simon IoT Logo"
-            class="w-48 h-48 md:w-56 md:h-56 mx-auto rounded-full shadow-lg mb-6">
+        <!-- 左側：個人檔案與介紹 (Desktop: Sticky) -->
+        <div class="md:w-5/12 md:sticky md:top-12 transition-all duration-500">
+            <!-- Logo -->
+            <img src="img/logo.jpg" alt="Simon IoT Logo"
+                class="w-48 h-48 md:w-64 md:h-64 mx-auto md:mx-0 rounded-full shadow-2xl mb-8 border-4 border-white/50">
 
-        <!-- 網站名稱與標題 -->
-        <h1 class="text-4xl md:text-5xl font-bold text-main">
-            Simon IoT
-        </h1>
+            <!-- 網站名稱與標題 -->
+            <h1 class="text-4xl md:text-5xl font-bold text-main leading-tight mb-4">
+                Simon IoT
+            </h1>
 
-        <!-- 描述文字 (更新後的列表樣式) -->
-        <div class="mt-6 mb-8">
-            <div class="inline-block space-y-3 text-lg md:text-xl text-main text-left">
-                <div class="flex items-center">
-                    <i class="fa-solid fa-network-wired w-6 text-center mr-3"></i>
-                    <span>研究智慧家庭</span>
-                </div>
-                <div class="flex items-center">
-                    <i class="fa-solid fa-house-signal w-6 text-center mr-3"></i>
-                    <span>Home Assistant</span>
-                </div>
-                <div class="flex items-center">
-                    <i class="fa-solid fa-microchip w-6 text-center mr-3"></i>
-                    <span>自製ESPHome硬體</span>
-                </div>
-                <div class="flex items-center">
-                    <i class="fa-solid fa-chalkboard-user w-6 text-center mr-3"></i>
-                    <span>分享教學文章</span>
+            <!-- 描述文字 -->
+            <div class="mt-6 mb-8">
+                <p class="text-xl md:text-2xl font-bold text-slate-700 mb-6">讓智慧家庭更簡單，<br>從這裡開始。</p>
+                <div
+                    class="inline-block space-y-3 text-lg text-main text-left bg-white/60 p-6 rounded-2xl shadow-sm backdrop-blur-sm w-full">
+                    <div class="flex items-center">
+                        <i class="fa-solid fa-network-wired w-8 text-center mr-3 text-accent text-xl"></i>
+                        <span class="font-medium">研究智慧家庭</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fa-solid fa-house-signal w-8 text-center mr-3 text-accent text-xl"></i>
+                        <span class="font-medium">Home Assistant</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fa-solid fa-microchip w-8 text-center mr-3 text-accent text-xl"></i>
+                        <span class="font-medium">自製ESPHome硬體</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fa-solid fa-chalkboard-user w-8 text-center mr-3 text-accent text-xl"></i>
+                        <span class="font-medium">分享教學文章</span>
+                    </div>
                 </div>
             </div>
+
+            <!-- 頁腳 (Desktop 顯示在左側) -->
+            <footer class="hidden md:block text-slate-500 text-sm mt-12">
+                <p>&copy; 2025 Simon IoT. All Rights Reserved.</p>
+            </footer>
         </div>
 
-        <!-- 按鈕連結 -->
-        <div class="space-y-4 max-w-sm mx-auto">
-            <!-- 連結 A: 開箱與教學 -->
-            <a href="https://xangin.notion.site/HA-17da78b89192495a8d73a88994394a5d" target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center bg-accent text-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
-                <div class="icon-container">
-                    <i class="fa-brands fa-notion fa-2x"></i>
-                </div>
-                <div class="text-left">
-                    <div class="font-bold">開箱與教學</div>
-                    <div class="text-sm opacity-90">智慧家庭相關文章</div>
-                </div>
-            </a>
+        <!-- 右側：連結區塊 (Desktop: Grid) -->
+        <div class="md:w-7/12 mt-8 md:mt-2">
+            <!-- 連結列表 -->
+            <div class="space-y-4 md:space-y-0 md:grid md:grid-cols-2 md:gap-6 w-full">
 
-            <!-- 連結 B: 商品購買處 -->
-            <a href="https://famistore.famiport.com.tw/famistore/users/239261/malls/6889dc84e27f3000da04fe7c"
-                target="_blank" rel="noopener noreferrer"
-                class="flex items-center bg-accent text-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
-                <div class="icon-container">
-                    <i class="fa-solid fa-cart-shopping fa-2x"></i>
-                </div>
-                <div class="text-left">
-                    <div class="font-bold">商品購買處</div>
-                    <div class="text-sm opacity-90">ESPhome冷氣模組，支援多家廠牌</div>
-                </div>
-            </a>
+                <!-- 連結 B: 商品購買處 (特別強調，佔據 2 格或放在最顯眼處) -->
+                <a href="https://famistore.famiport.com.tw/famistore/users/239261/malls/6889dc84e27f3000da04fe7c"
+                    target="_blank" rel="noopener noreferrer"
+                    class="md:col-span-2 group flex items-center bg-gradient-to-r from-amber-500 to-amber-600 text-white p-5 rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 hover:scale-[1.02]">
+                    <div
+                        class="icon-container bg-white/20 rounded-full w-12 h-12 flex items-center justify-center mr-4 group-hover:rotate-12 transition-transform">
+                        <i class="fa-solid fa-cart-shopping fa-xl"></i>
+                    </div>
+                    <div class="text-left flex-1">
+                        <div class="font-bold text-lg">商品購買處 (賣場)</div>
+                        <div class="text-sm opacity-90 font-light">ESPhome冷氣模組，支援多家廠牌</div>
+                    </div>
+                    <i
+                        class="fa-solid fa-arrow-right opacity-0 group-hover:opacity-100 transition-opacity -ml-4 group-hover:ml-0"></i>
+                </a>
 
-            <!-- 連結 C: 模組說明書 -->
-            <a href="https://siot.cc/ac"
-                class="flex items-center bg-accent text-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
-                <div class="icon-container">
-                    <i class="fa-solid fa-circle-question fa-2x"></i>
-                </div>
-                <div class="text-left">
-                    <div class="font-bold">模組說明書</div>
-                    <div class="text-sm opacity-90">模組接哪裡?怎麼連WiFi?</div>
-                </div>
-            </a>
+                <!-- 連結 C: 模組說明書 -->
+                <a href="https://siot.cc/ac"
+                    class="group flex items-center bg-white border border-blue-100 text-main p-4 rounded-xl shadow-md hover:shadow-xl hover:border-blue-300 transition-all transform hover:-translate-y-1">
+                    <div class="icon-container text-blue-600 mr-3">
+                        <i class="fa-solid fa-book-open fa-2x"></i>
+                    </div>
+                    <div class="text-left">
+                        <div class="font-bold text-lg">模組說明書</div>
+                        <div class="text-sm text-slate-500">模組安裝與設定教學</div>
+                    </div>
+                </a>
 
-            <!-- 連結 D: Line@ -->
-            <a href="https://line.me/R/ti/p/@066hhxou" target="_blank" rel="noopener noreferrer"
-                class="flex items-center bg-accent text-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
-                <div class="icon-container">
-                    <i class="fa-brands fa-line fa-2x"></i>
-                </div>
-                <div class="text-left">
-                    <div class="font-bold">Line@</div>
-                    <div class="text-sm opacity-90">商品諮詢，疑難解答</div>
-                </div>
-            </a>
+                <!-- 連結 A: 開箱與教學 -->
+                <a href="https://xangin.notion.site/HA-17da78b89192495a8d73a88994394a5d" target="_blank"
+                    rel="noopener noreferrer"
+                    class="group flex items-center bg-white border border-slate-200 text-slate-700 p-4 rounded-xl shadow-sm hover:shadow-lg hover:border-slate-400 transition-all transform hover:-translate-y-1">
+                    <div class="icon-container text-slate-600 mr-3">
+                        <i class="fa-brands fa-notion fa-2x"></i>
+                    </div>
+                    <div class="text-left">
+                        <div class="font-bold text-lg">教學文章</div>
+                        <div class="text-sm text-slate-500">Notion 知識庫</div>
+                    </div>
+                </a>
 
-            <!-- 連結 E: Github -->
-            <a href="https://github.com/xangin/esphome-project-collection/" target="_blank" rel="noopener noreferrer"
-                class="flex items-center bg-accent text-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
-                <div class="icon-container">
-                    <i class="fa-brands fa-github fa-2x"></i>
-                </div>
-                <div class="text-left">
-                    <div class="font-bold">其他Github專案</div>
-                    <div class="text-sm opacity-90">更多ESPhome實作分享</div>
-                </div>
-            </a>
+                <!-- 連結 D: Line@ -->
+                <a href="https://line.me/R/ti/p/@066hhxou" target="_blank" rel="noopener noreferrer"
+                    class="group flex items-center bg-[#06C755] text-white p-4 rounded-xl shadow-md hover:shadow-xl hover:bg-[#05b34c] transition-all transform hover:-translate-y-1">
+                    <div class="icon-container mr-3">
+                        <i class="fa-brands fa-line fa-2x"></i>
+                    </div>
+                    <div class="text-left">
+                        <div class="font-bold text-lg">Line@ 客服</div>
+                        <div class="text-sm opacity-90">商品諮詢與售後</div>
+                    </div>
+                </a>
+
+                <!-- 連結 E: Github -->
+                <a href="https://github.com/xangin/esphome-project-collection/" target="_blank"
+                    rel="noopener noreferrer"
+                    class="group flex items-center bg-slate-800 text-white p-4 rounded-xl shadow-md hover:shadow-xl hover:bg-slate-900 transition-all transform hover:-translate-y-1">
+                    <div class="icon-container mr-3">
+                        <i class="fa-brands fa-github fa-2x"></i>
+                    </div>
+                    <div class="text-left">
+                        <div class="font-bold text-lg">Github 專案</div>
+                        <div class="text-sm opacity-90">更多開源實作分享</div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- 分隔線 (Mobile Only) -->
+            <hr class="my-12 border-gray-300 md:hidden">
+
+            <!-- 頁腳 (Mobile Only) -->
+            <footer class="text-center text-slate-600 space-y-2 md:hidden">
+                <p>&copy; 2025 Simon IoT. All Rights Reserved.</p>
+            </footer>
+
         </div>
-
-        <!-- 分隔線 -->
-        <hr class="my-12 border-gray-300">
-
-        <!-- 頁腳 -->
-        <footer class="text-center text-slate-600 space-y-2">
-            <p>&copy; 2025 Simon IoT. All Rights Reserved.</p>
-        </footer>
 
     </div>
 
