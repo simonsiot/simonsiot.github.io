@@ -1,38 +1,83 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simon IoT</title>
     <!-- 網站圖示 -->
     <link rel="icon" href="img/favicon.png" type="image/png">
+    <!-- SEO & Social Sharing -->
+    <meta name="description" content="Simon IoT 專注於智慧家庭 Home Assistant 與 ESPHome 硬體整合。提供各種家電控制模組教學與販售，致力於讓智慧家庭更簡單。">
+    <meta name="keywords" content="智慧家庭, Home Assistant, ESPHome, 冷氣模組, IoT, Simon IoT, 教學">
+    <meta property="og:title" content="Simon IoT - 智慧家庭 / Home Assistant / ESPHome">
+    <meta property="og:description" content="專注於智慧家庭 Home Assistant 與 ESPHome 硬體整合。提供各種家電控制模組教學與販售。">
+    <meta property="og:image" content="https://simonsiot.github.io/img/logo.jpg">
+    <meta property="og:url" content="https://simonsiot.github.io/">
+    <meta property="og:type" content="website">
+
     <!-- 引入 Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入 Font Awesome 圖示庫 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- 引入 Font Awesome 圖示庫 (Update to 6.6.0) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- 引入 Google Fonts 的 Inter 字體 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Noto+Sans+TC:wght@400;700&display=swap"
+        rel="stylesheet">
     <style>
-        /* 自訂樣式，使用從 Logo 提取的顏色 */
+        /* 自訂樣式 */
         body {
             font-family: 'Inter', 'Noto Sans TC', sans-serif;
-            background-color: #e0e8f0; /* 從 Logo 背景提取的淺藍灰色 */
+            /* 藍白漸層背景 + 細微紋理 */
+            background-color: #f0f4f8;
+            background-image:
+                radial-gradient(at 0% 0%, hsla(210, 100%, 96%, 1) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(210, 100%, 94%, 1) 0, transparent 50%),
+                radial-gradient(at 100% 100%, hsla(210, 100%, 96%, 1) 0, transparent 50%),
+                radial-gradient(at 0% 100%, hsla(210, 100%, 94%, 1) 0, transparent 50%);
+            background-attachment: fixed;
         }
+
+        /* 增加一個細微的網格紋理 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(13, 79, 141, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(13, 79, 141, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
         .text-main {
-            color: #0d4f8d; /* 從 Logo 深藍色部分提取 */
+            color: #0d4f8d;
+            /* 從 Logo 深藍色部分提取 */
         }
+
         .bg-accent {
-            background-color: #1e88e5; /* 從 Logo 較亮的藍色部分提取 */
+            background-color: #1e88e5;
+            /* 從 Logo 較亮的藍色部分提取 */
         }
+
         .hover\:bg-accent-dark:hover {
-            background-color: #1565c0; /* 滑鼠懸停時的深藍色 */
+            background-color: #1565c0;
+            /* 滑鼠懸停時的深藍色 */
         }
+
         /* 確保 Font Awesome 圖示垂直置中 */
         .icon-container {
-            width: 2.5rem; /* 40px */
-            height: 2.5rem; /* 40px */
+            width: 2.5rem;
+            /* 40px */
+            height: 2.5rem;
+            /* 40px */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -41,12 +86,14 @@
         }
     </style>
 </head>
+
 <body class="flex items-center justify-center min-h-screen p-4">
 
     <div class="text-center p-6 md:p-12 max-w-2xl mx-auto w-full">
 
         <!-- Logo -->
-        <img src="img/logo.jpg" alt="Simon IoT Logo" class="w-48 h-48 md:w-56 md:h-56 mx-auto rounded-full shadow-lg mb-6">
+        <img src="img/logo.jpg" alt="Simon IoT Logo"
+            class="w-48 h-48 md:w-56 md:h-56 mx-auto rounded-full shadow-lg mb-6">
 
         <!-- 網站名稱與標題 -->
         <h1 class="text-4xl md:text-5xl font-bold text-main">
@@ -78,7 +125,9 @@
         <!-- 按鈕連結 -->
         <div class="space-y-4 max-w-sm mx-auto">
             <!-- 連結 A: 開箱與教學 -->
-            <a href="https://xangin.notion.site/HA-17da78b89192495a8d73a88994394a5d" target="_blank" rel="noopener noreferrer" class="flex items-center bg-accent text-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+            <a href="https://xangin.notion.site/HA-17da78b89192495a8d73a88994394a5d" target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center bg-accent text-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
                 <div class="icon-container">
                     <i class="fa-brands fa-notion fa-2x"></i>
                 </div>
@@ -89,7 +138,9 @@
             </a>
 
             <!-- 連結 B: 商品購買處 -->
-            <a href="https://famistore.famiport.com.tw/famistore/users/239261/malls/6889dc84e27f3000da04fe7c" target="_blank" rel="noopener noreferrer" class="flex items-center bg-accent text-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+            <a href="https://famistore.famiport.com.tw/famistore/users/239261/malls/6889dc84e27f3000da04fe7c"
+                target="_blank" rel="noopener noreferrer"
+                class="flex items-center bg-accent text-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
                 <div class="icon-container">
                     <i class="fa-solid fa-cart-shopping fa-2x"></i>
                 </div>
@@ -100,7 +151,8 @@
             </a>
 
             <!-- 連結 C: 模組說明書 -->
-            <a href="https://siot.cc/ac" class="flex items-center bg-accent text-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+            <a href="https://siot.cc/ac"
+                class="flex items-center bg-accent text-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
                 <div class="icon-container">
                     <i class="fa-solid fa-circle-question fa-2x"></i>
                 </div>
@@ -111,7 +163,8 @@
             </a>
 
             <!-- 連結 D: Line@ -->
-            <a href="https://line.me/R/ti/p/@066hhxou" target="_blank" rel="noopener noreferrer" class="flex items-center bg-accent text-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+            <a href="https://line.me/R/ti/p/@066hhxou" target="_blank" rel="noopener noreferrer"
+                class="flex items-center bg-accent text-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
                 <div class="icon-container">
                     <i class="fa-brands fa-line fa-2x"></i>
                 </div>
@@ -120,9 +173,10 @@
                     <div class="text-sm opacity-90">商品諮詢，疑難解答</div>
                 </div>
             </a>
-            
+
             <!-- 連結 E: Github -->
-            <a href="https://github.com/xangin/esphome-project-collection/" target="_blank" rel="noopener noreferrer" class="flex items-center bg-accent text-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
+            <a href="https://github.com/xangin/esphome-project-collection/" target="_blank" rel="noopener noreferrer"
+                class="flex items-center bg-accent text-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-all transform hover:scale-105 hover:bg-accent-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-400">
                 <div class="icon-container">
                     <i class="fa-brands fa-github fa-2x"></i>
                 </div>
@@ -144,4 +198,5 @@
     </div>
 
 </body>
+
 </html>
