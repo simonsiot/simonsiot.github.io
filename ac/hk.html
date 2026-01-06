@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon IoT - 冷氣模組HK版介紹與說明</title>
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: #f0f4f8;
+            background-image:
+                radial-gradient(at 0% 0%, hsla(210, 100%, 96%, 1) 0, transparent 50%),
+                radial-gradient(at 100% 0%, hsla(210, 100%, 94%, 1) 0, transparent 50%),
+                radial-gradient(at 100% 100%, hsla(210, 100%, 96%, 1) 0, transparent 50%),
+                radial-gradient(at 0% 100%, hsla(210, 100%, 94%, 1) 0, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(13, 79, 141, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(13, 79, 141, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body class="text-slate-800">
+
+    <div class="container mx-auto max-w-3xl p-4 sm:p-6 md:p-8">
+
+        <!-- 主要標題 -->
+        <header class="text-center my-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-sky-700">冷氣模組HK版</h1>
+            <h2 class="text-2xl text-slate-700 mt-2">產品介紹與使用說明</h2>
+        </header>
+
+        <main class="bg-white rounded-2xl shadow-lg p-6 sm:p-8 space-y-8">
+
+            <!-- 重要警告訊息 -->
+            <div class="space-y-4">
+                <div class="bg-red-100 border-l-4 border-red-500 text-red-800 p-4 rounded-r-lg" role="alert">
+                    <p class="font-bold">上機前務必確認插對地方！</p>
+                    <p>如因插錯腳座造成模組或電器損壞恕不負責。</p>
+                </div>
+                <!-- 安裝位置參考 (重要引導) -->
+                <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded-r-lg">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <i class="fa-solid fa-circle-question text-emerald-600 mt-1"></i>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-emerald-800 font-bold">還不知道模組該插在哪裡？</h3>
+                            <p class="text-emerald-700 mt-1 mb-2">請務必先確認您的冷氣/除濕機安裝位置，以免插錯。</p>
+                            <a href="where.html"
+                                class="inline-block bg-emerald-600 text-white text-sm font-semibold px-4 py-2 rounded shadow hover:bg-emerald-700 transition-colors">
+                                查看安裝位置圖解 &rarr;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 產品說明 (Collapsible) -->
+            <details
+                class="group border border-slate-200 rounded-xl overflow-hidden open:shadow-md transition-all duration-300">
+                <summary
+                    class="flex items-center justify-between p-4 cursor-pointer bg-slate-50 hover:bg-slate-100 transition-colors list-none select-none">
+                    <h2 class="text-2xl font-bold text-slate-900">產品介紹</h2>
+                    <span class="text-slate-500 group-open:rotate-180 transition-transform duration-300">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </span>
+                </summary>
+
+                <div class="p-6 border-t border-slate-200 bg-white">
+                    <div class="space-y-6 text-lg text-slate-700">
+                        <p class="text-slate-600">本模組除了可透過ESPhome接入 Home Assistant (HA) 外，還多了能直連 HomeKit
+                            的功能，目前支援國際、日立、大金及三菱電機空調。</p>
+
+                        <p class="mt-4 text-slate-600">在裝置的 IP 頁面能看到 HomeKit 配對碼以及重設配對的按鈕。</p>
+                        <img src="img/web_hkcode.png" alt="裝置IP頁面顯示HomeKit配對碼"
+                            class="mt-2 rounded-lg shadow-md max-w-sm mx-auto w-full border border-slate-200">
+
+                        <p class="mt-4 text-slate-600">加入 HomeKit 時，會顯示為一個橋接器 (Bridge)。</p>
+                        <img src="img/hub.png" alt="HomeKit 顯示為橋接器"
+                            class="mt-2 rounded-lg shadow-md max-w-sm mx-auto w-full border border-slate-200">
+
+                        <p class="mt-4 text-slate-600">橋接器的名稱及機型後面都會帶 MAC 末四碼，方便辨識。</p>
+                        <img src="img/hub_detail.png" alt="橋接器詳細資訊"
+                            class="mt-2 rounded-lg shadow-md max-w-sm mx-auto w-full border border-slate-200">
+
+                        <p class="mt-4 text-slate-600">然後再將空調加入，空調的名稱及機型後面也都會帶 MAC 末四碼，不容易搞混。</p>
+                        <img src="img/climte_detail.png" alt="空調裝置詳細資訊"
+                            class="mt-2 rounded-lg shadow-md max-w-sm mx-auto w-full border border-slate-200">
+
+                        <p class="mt-4 text-slate-600">接入 HomeKit 後的功能為：<span class="font-semibold">關閉、冷氣、暖氣</span> 以及
+                            <span class="font-semibold">調節溫度</span>。（注意：沒有風速調整功能）
+                        </p>
+                        <img src="img/cliamte.png" alt="HomeKit 空調控制介面"
+                            class="mt-2 rounded-lg shadow-md max-w-sm mx-auto w-full border border-slate-200"
+                            onerror="this.src='https://placehold.co/400x600/f1f5f9/64748b?text=cliamte.PNG'">
+                    </div>
+                </div>
+            </details>
+
+            <!-- 設定步驟 (Collapsible) -->
+            <details
+                class="group border border-slate-200 rounded-xl overflow-hidden open:shadow-md transition-all duration-300">
+                <summary
+                    class="flex items-center justify-between p-4 cursor-pointer bg-slate-50 hover:bg-slate-100 transition-colors list-none select-none">
+                    <h2 class="text-2xl font-bold text-slate-900">設定步驟</h2>
+                    <span class="text-slate-500 group-open:rotate-180 transition-transform duration-300">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </span>
+                </summary>
+
+                <div class="p-6 border-t border-slate-200 bg-white">
+                    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-800 p-4 rounded-r-lg mb-6"
+                        role="alert">
+                        <p class="font-bold">請先透過 USB 測試連線！</p>
+                        <p>請先插上 USB 電源，確認模組可成功連上家中網路及 HA / HomeKit 後，再安裝到電器上。</p>
+                    </div>
+
+                    <ol class="list-decimal list-inside space-y-6 text-lg text-slate-700">
+                        <!-- 步驟 1 -->
+                        <li>
+                            <span class="font-semibold">開啟 Wi-Fi 熱點：</span>
+                            <p class="ml-6 mt-1 text-slate-600">從模組的 USB-C 孔上電後，等待約 30 秒，模組會自動建立一個 Wi-Fi 熱點。</p>
+                        </li>
+
+                        <!-- 步驟 2 -->
+                        <li>
+                            <span class="font-semibold">辨識您的設備：</span>
+                            <p class="ml-6 mt-1 text-slate-600">根據您的空調品牌，選擇對應的 Wi-Fi 熱點名稱：</p>
+                            <ul class="list-disc list-inside ml-10 mt-2 space-y-1 text-slate-600">
+                                <li>國際: <code
+                                        class="bg-slate-200 text-slate-800 px-2 py-1 rounded-md font-mono">hk-ac-p</code>
+                                </li>
+                                <li>日立: <code
+                                        class="bg-slate-200 text-slate-800 px-2 py-1 rounded-md font-mono">hk-ac-ht</code>
+                                </li>
+                                <li>大金: <code
+                                        class="bg-slate-200 text-slate-800 px-2 py-1 rounded-md font-mono">hk-ac-dk</code>
+                                </li>
+                                <li>三菱電機: <code
+                                        class="bg-slate-200 text-slate-800 px-2 py-1 rounded-md font-mono">hk-ac-mt</code>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- 步驟 3 -->
+                        <li>
+                            <span class="font-semibold">連線至熱點：</span>
+                            <p class="ml-6 mt-1 text-slate-600">熱點連線密碼為 <code
+                                    class="bg-slate-200 text-slate-800 px-2 py-1 rounded-md font-mono">12345678</code>。連上後，在瀏覽器輸入網址
+                                <a href="http://192.168.4.1" target="_blank"
+                                    class="text-sky-600 hover:underline">192.168.4.1</a> 進入設定頁面。
+                            </p>
+                        </li>
+
+                        <!-- 步驟 4 -->
+                        <li>
+                            <span class="font-semibold">設定 Wi-Fi 連線：</span>
+                            <p class="ml-6 mt-1 text-slate-600">在設定頁面中，選擇您家中的 2.4GHz Wi-Fi 名稱，並輸入密碼，然後按下 <span
+                                    class="font-bold">SAVE</span>。</p>
+                        </li>
+
+                        <!-- 步驟 5 -->
+                        <li>
+                            <span class="font-semibold">確認設備上線：</span>
+                            <p class="ml-6 mt-1 text-slate-600">模組重啟後會自動連上您家中的 Wi-Fi。您可以在路由器的管理頁面看到新設備，其名稱後面會附加 MAC
+                                位址以供辨識。</p>
+                        </li>
+
+                        <!-- 步驟 6 -->
+                        <li>
+                            <span class="font-semibold">整合至 HomeKit：</span>
+                            <p class="ml-6 mt-1 text-slate-600">待裝置連上 Wi-Fi 後，請依照以下步驟手動加入 HomeKit：</p>
+                            <ol class="list-[lower-alpha] list-inside ml-10 mt-2 space-y-4 text-slate-600">
+                                <li>至路由器的管理頁面，找到裝置的 IP 位址。</li>
+                                <li>
+                                    在瀏覽器中開啟該 IP 位址 (例如 <code
+                                        class="bg-slate-200 text-slate-800 px-2 py-1 rounded-md font-mono">http://192.168.x.x</code>)，頁面上會顯示
+                                    HomeKit 配對碼。
+                                    <img src="img/web_hkcode.png" alt="裝置IP頁面顯示HomeKit配對碼"
+                                        class="mt-2 rounded-lg shadow-md max-w-sm mx-auto w-full border border-slate-200">
+                                </li>
+                                <li>打開 Apple「家庭 (Home)」App，點擊右上角「+」，選擇「加入配件」。</li>
+                                <li>點擊「更多選項...」，應會自動搜尋到名稱結尾帶有 4位MAC 碼的「橋接器」。</li>
+                                <li>點選該橋接器，並輸入您在 IP 頁面上看到的配對碼。</li>
+                                <li>成功加入橋接器後，再依照提示將「空調」配件加入，即完成設定。</li>
+                            </ol>
+                        </li>
+
+                        <!-- 步驟 7 -->
+                        <li>
+                            <span class="font-semibold">整合至 Home Assistant：</span>
+                            <p class="ml-6 mt-1 text-slate-600">Home Assistant (HA) 通常會自動提示發現新設備，點擊加入即可。若無自動提示，請至 HA
+                                的「設定」>「裝置與服務」>「新增整合」，搜尋並選擇 <span class="font-bold">ESPhome</span>，然後輸入模組的 IP 位址手動加入。</p>
+                        </li>
+
+                    </ol>
+                </div>
+            </details>
+
+            <!-- 重設步驟 (Collapsible) -->
+            <details
+                class="group border border-slate-200 rounded-xl overflow-hidden open:shadow-md transition-all duration-300">
+                <summary
+                    class="flex items-center justify-between p-4 cursor-pointer bg-slate-50 hover:bg-slate-100 transition-colors list-none select-none">
+                    <h2 class="text-2xl font-bold text-slate-900">重設步驟</h2>
+                    <span class="text-slate-500 group-open:rotate-180 transition-transform duration-300">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </span>
+                </summary>
+
+                <div class="p-6 border-t border-slate-200 bg-white">
+                    <ol class="list-decimal list-inside space-y-6 text-lg text-slate-700">
+                        <li>
+                            <span class="font-semibold">重設 HomeKit 配對 (遷移家庭)：</span>
+                            <p class="ml-6 mt-1 text-slate-600">如需將模組遷移至其他家庭，請先至裝置 IP 頁面按下「Reset HK」右方的 <span
+                                    class="font-bold">PRESS</span> 按鈕，再從「家庭」App 內刪除橋接器，即可換至新的家庭。</p>
+                        </li>
+                        <li>
+                            <span class="font-semibold">恢復出廠設定 (Factory Reset)：</span>
+                            <p class="ml-6 mt-1 text-slate-600">在裝置 IP 頁面下方找到「Factory Reset 恢復出廠」，按下右方的 <span
+                                    class="font-bold">PRESS</span> 按鈕，將會清除包含 Wi-Fi 在內的所有設定，需重新進行連線設定。</p>
+                        </li>
+                    </ol>
+                </div>
+            </details>
+
+            <!-- 購買連結區塊 -->
+            <div
+                class="mt-8 bg-gradient-to-br from-sky-50 to-white border-2 border-sky-100 rounded-xl p-6 text-center shadow-sm">
+                <h3 class="text-2xl font-bold text-slate-800 mb-3">立即購買</h3>
+
+                <!-- 說明提示 -->
+                <div
+                    class="bg-yellow-50 text-yellow-800 text-sm sm:text-base py-2 px-4 rounded-lg inline-block mb-4 border border-yellow-100">
+                    <span class="font-bold mr-1">🔔 下單提醒：</span>
+                    此賣場連結沒有問題，請依照廠牌選擇對應名稱，安心下單。
+                </div>
+
+                <br>
+
+                <a href="https://famistore.famiport.com.tw/famistore/users/239261/merchandises/691adf08240f36870f5c9a62"
+                    target="_blank"
+                    class="group inline-flex items-center justify-center px-8 py-3 text-lg font-bold text-white transition-all duration-200 bg-sky-600 rounded-full hover:bg-sky-700 hover:shadow-lg hover:-translate-y-0.5">
+                    前往全家好賣+ 下單
+                    <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                    </svg>
+                </a>
+                <p class="text-slate-400 text-xs mt-3">點擊將開啟新視窗前往賣場</p>
+            </div>
+
+            <!-- 聯絡方式 -->
+            <div class="text-center border-t border-slate-200 pt-6">
+                <h3 class="text-xl font-semibold text-slate-800">需要協助嗎？</h3>
+                <p class="text-slate-600 mt-2">使用上如有任何疑問，請點下方加入官方 Line@ 帳號詢問。</p>
+                <a href="https://line.me/R/ti/p/@066hhxou" target="_blank"
+                    class="mt-4 text-2xl font-bold text-green-600 bg-green-50 hover:bg-green-100 transition-colors py-2 px-4 rounded-lg inline-block">@066hhxou</a>
+            </div>
+
+        </main>
+
+        <!-- 頁腳回首頁按鈕 -->
+        <div class="text-center mt-8">
+            <a href="index.html"
+                class="inline-block bg-sky-600 text-white font-semibold px-4 py-2 rounded-lg shadow hover:bg-sky-700 transition-colors">
+                &larr; 回說明書目錄
+            </a>
+        </div>
+
+        <!-- 頁腳 -->
+        <footer class="text-center mt-6 text-slate-500 text-sm">
+            <p>&copy; 2025 Simon IoT. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+</body>
+
+</html>
